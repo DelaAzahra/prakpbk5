@@ -1,6 +1,7 @@
+<!-- src/App.vue -->
 <template>
   <div>
-    <h1>Todo List (Pinia)</h1>
+    <h1>Aplikasi Todo List (Pinia)</h1>
     <TodoInput />
     <p>Tugas belum selesai: {{ store.unfinishedCount }}</p>
     <ul>
@@ -9,16 +10,11 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import TodoInput from './components/TodoInput.vue'
 import TodoItem from './components/TodoItem.vue'
 import { useTodoStore } from './stores/todoStore'
 
-export default {
-  components: { TodoInput, TodoItem },
-  setup() {
-    const store = useTodoStore()
-    return { store }
-  }
-}
+const store = useTodoStore()
 </script>
+

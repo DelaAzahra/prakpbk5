@@ -1,6 +1,7 @@
+<!-- src/components/TodoItem.vue -->
 <template>
   <li>
-    <input type="checkbox" :checked="todo.done" @change="store.toggleDone(todo.id)" />
+    <input type="checkbox" :checked="todo.done" @change="store.toggleTodo(todo.id)" />
     <span :style="{ textDecoration: todo.done ? 'line-through' : 'none' }">
       {{ todo.text }}
     </span>
@@ -8,14 +9,11 @@
   </li>
 </template>
 
-<script>
+<script setup>
 import { useTodoStore } from '../stores/todoStore'
+const store = useTodoStore()
 
-export default {
-  props: ['todo'],
-  setup() {
-    const store = useTodoStore()
-    return { store }
-  }
-}
+defineProps({
+  todo: Object
+})
 </script>

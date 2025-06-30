@@ -1,30 +1,20 @@
+<!-- src/components/TodoInput.vue -->
 <template>
   <div>
-    <input v-model="newTodo" @keyup.enter="add" placeholder="Tambah tugas..." />
+    <input v-model="text" @keyup.enter="add" placeholder="Tambah tugas baru..." />
     <button @click="add">Tambah</button>
   </div>
 </template>
 
-<script>
+<script setup>
+import { ref } from 'vue'
 import { useTodoStore } from '../stores/todoStore'
 
-export default {
-  data() {
-    return {
-      newTodo: ''
-    }
-  },
-  setup() {
-    const store = useTodoStore()
-    return { store }
-  },
-  methods: {
-    add() {
-      if (this.newTodo.trim()) {
-        this.store.addTodo(this.newTodo)
-        this.newTodo = ''
-      }
-    }
-  }
+const store = useTodoStore()
+const text = ref('')
+
+function add() {
+  store.addTodo(text.value)
+  text.value = ''
 }
 </script>

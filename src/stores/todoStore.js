@@ -7,12 +7,14 @@ export const useTodoStore = defineStore('todo', {
   }),
   actions: {
     addTodo(text) {
-      this.todos.push({ id: Date.now(), text, done: false })
+      if (text.trim()) {
+        this.todos.push({ id: Date.now(), text, done: false })
+      }
     },
     removeTodo(id) {
       this.todos = this.todos.filter(todo => todo.id !== id)
     },
-    toggleDone(id) {
+    toggleTodo(id) {
       const todo = this.todos.find(t => t.id === id)
       if (todo) todo.done = !todo.done
     }
